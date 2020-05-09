@@ -1,25 +1,24 @@
 import React from "react";
+import { Canvas } from "react-three-fiber";
 import * as THREE from "three";
+import Controls from "./Controls";
+import "./styles.scss";
+import Skull from "./Skull";
 
 export default function Animation() {
-  // create new scene
-  const scene = new THREE.scene();
-  // create camera variables
-  const fov = 75;
-  const aspectRatio = window.innerWidth / window.innerHeight;
-  const near = 2;
-  const far = 500;
-
-  // setting up the camera
-  const camera = new THREE.PerspectiveCamera(fov, aspectRatio, near, far);
-
-  // create renderer
-  const renderer = new THREE.WebGLRenderer();
-  renderer.setSize(window.innerWidth, window.innerHeight);
-
   return (
-    <canvas>
-      <p>"hey"</p>
-    </canvas>
+    <Canvas
+      camera={{ position: [10, 0, -25] }}
+      onCreated={({ gl }) => {
+        gl.shadowMap.enabled = true;
+        gl.shadowMap.type = THREE.PCFSoftShadowMap;
+      }}
+    >
+      <fog attach="fog" args={["#cc7b32", 2, 50]} />
+      <Controls />
+      <ambientLight intensity={0.4} />
+      <pointLight position={[-5, 5, 10]} penumbra={1} />
+      <Skull />
+    </Canvas>
   );
 }

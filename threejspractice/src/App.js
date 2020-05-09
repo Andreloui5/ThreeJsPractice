@@ -1,14 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
+import { useSpring, animated } from "react-spring";
 import Animation from "./Animation";
+import "./styles.scss";
 
-function App() {
+export default function App() {
+  // Animation Value
+  const [hovered, setHovered] = useState(false);
+
+  // sets opacity for checkout box when hovered
+  const props = useSpring({
+    opacity: hovered ? 0.98 : 0.72,
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <Animation />
-      </header>
-    </div>
+    <>
+      {/* Main Animation Component */}
+      <Animation />
+    </>
   );
 }
-
-export default App;
