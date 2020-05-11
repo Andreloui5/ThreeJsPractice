@@ -1,9 +1,10 @@
 html,
 body,
 #root,
-canvas {
+#canvas {
   margin: 0;
   padding: 0;
   height: 100vh;
   width: 100vw;
+  display: block
 }
